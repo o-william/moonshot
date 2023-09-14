@@ -42,6 +42,7 @@ struct MissionView: View {
                         .padding(.top)
                     
                     VStack(alignment: .leading) {
+                        Text("Mission launch date: \(mission.formattedLaunchDate == "N/A" ? "Not available. This mission did not launch" : mission.formattedLaunchDate)")
                         // For dividing the view between mission logo and highlights
                         Rectangle()
                             .frame(height: 2)
