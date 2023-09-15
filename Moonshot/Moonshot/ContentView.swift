@@ -11,37 +11,44 @@
 
 import SwiftUI
 
-//class Layout: ObservableObject {
-//    @Published var trueState: Bool
-//    init() {
-//        self.trueState = true
-//    }
-//
-//    // probably also use a setter and getter, rather than accessing the property directly
-//}
-
 struct ContentView: View {
     // @State private var showingGrid: Bool = true
     @State private var showingGrid: Bool = true
+    @State private var hideBackButton: Bool = true
     
     var body: some View {
         // I should edit the views to take in the data as arguments instead of having the data processed in two different views
-//        NavigationView{
-//            NavigationLink(destination:
-//                            GridLayout(showingGrid: $showingGrid),
-//                           isActive: $showingGrid) {
-//                ListLayout(showingGrid: $showingGrid)
-//            }
-        
+        NavigationView {
             Group {
                 if showingGrid {
-                    GridLayout(showingGrid: $showingGrid)
+                    GridLayout()
+                        .navigationBarTitle("Moonshot")
+                        .navigationBarBackButtonHidden(hideBackButton)
                 } else {
-                    ListLayout(showingGrid: $showingGrid)
+                    ListLayout()
+                        .navigationBarTitle("Moonshot")
+                        .navigationBarBackButtonHidden(hideBackButton)
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showingGrid.toggle()
+                        hideBackButton = true
+                    })
+                    {
+                        if showingGrid {
+                            Text("List View")
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Grid View")
+                                .foregroundColor(.white)
+                        }
+                    }
                 }
             }
         }
-//    }
+    }
 //    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
 //    let missions: [Mission] = Bundle.main.decode("missions.json")
 //

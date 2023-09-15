@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ListLayout: View {
-    @Binding var showingGrid: Bool
+    // @Binding var showingGrid: Bool
     
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     let missions: [Mission] = Bundle.main.decode("missions.json")
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             ScrollView{
                 LazyVStack {
                     ForEach(missions) { mission in
@@ -56,25 +56,26 @@ struct ListLayout: View {
                     }
                 }
             }
-            .navigationTitle("Moonshot")
-            .toolbar {
-                Button("Grid View") {
-                    showingGrid = true
-                }
-            }
+            //.navigationTitle("Moonshot")
+            //.toolbar {
+            //    Button("Grid View") {
+            //        showingGrid = true
+            //    }
+            //}
             .background(.darkBackground)
             .preferredColorScheme(.dark)
             
             
             // Navigation View closing brace below
-        }
+        //}
     }
 }
 
 struct ListLayout_Previews: PreviewProvider {
-    @State static var showingGrid: Bool = true
+    // @State static var showingGrid: Bool = true
     
     static var previews: some View {
-        ListLayout(showingGrid: $showingGrid)
+        // ListLayout(showingGrid: $showingGrid)
+        ListLayout()
     }
 }
